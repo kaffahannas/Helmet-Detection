@@ -29,6 +29,15 @@ bukti_pelanggaran/
 *.mp4
 *.mkv
 
+# Compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+server/server
+server/server.exe
+
 # IDEs and Editors
 .vscode/
 .claude/
