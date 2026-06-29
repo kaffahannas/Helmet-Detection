@@ -16,12 +16,13 @@ ENV/
 models/*.pt
 *.pt
 
-# Whitelist specific model files under 100MB so they can be pushed to GitHub
+# Whitelist specific model files so they can be pushed to GitHub
 !models/best1080.pt
 !models/best_safety_helmet_lisa.pt
 !models/best_latest_safety_dataset.pt
 !models/best640.pt
 !models/best.pt
+!models/bestv8L.pt
 
 # Datasets and archives (Too large and slow for git)
 Dataset/
