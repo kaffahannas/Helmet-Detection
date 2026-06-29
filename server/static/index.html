@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafetyVision — PT Bintang Toedjoe</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="brand">
+      <span class="brand-icon">⛑</span>
+      <div>
+        <div class="brand-name">SafetyVision</div>
+        <div class="brand-sub">PT Bintang Toedjoe &nbsp;·&nbsp; Helmet Detection System</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="clock" class="clock"></div>
+      <div id="sysStatus" class="badge badge-warn">● CONNECTING</div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════════════════════
+       GRID VIEW — default view showing all 3 cameras
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <div id="gridView" class="view">
+
+    <div class="view-bar">
+      <div class="view-title">LIVE MONITORING</div>
+      <div class="view-subtitle" id="gridOnline">3 cameras</div>
+    </div>
+
+    <div class="cam-grid">
+
+      <!-- CAM 1 -->
+      <div class="cam-card" onclick="showDetail(0)">
+        <div class="cam-header">
+          <span class="cam-label">CAM 1</span>
+          <span id="gridRec0" class="cam-rec hidden">● REC</span>
+        </div>
+        <div class="cam-feed-box">
+          <img id="gridFeed0" src="/stream/0" alt="CAM 1" />
+          <div class="cam-hover-overlay">
+            <span class="expand-hint">⛶ Full View</span>
+          </div>
+        </div>
+        <div class="cam-footer">
+          <span id="gridVio0" class="cam-vio">0 violations</span>
+          <span id="gridFps0" class="cam-fps">— fps</span>
+        </div>
+      </div>
+
+      <!-- CAM 2 -->
+      <div class="cam-card" onclick="showDetail(1)">
+        <div class="cam-header">
+          <span class="cam-label">CAM 2</span>
+          <span id="gridRec1" class="cam-rec hidden">● REC</span>
+        </div>
+        <div class="cam-feed-box">
+          <img id="gridFeed1" src="/stream/1" alt="CAM 2" />
+          <div class="cam-hover-overlay">
+            <span class="expand-hint">⛶ Full View</span>
+          </div>
+        </div>
+        <div class="cam-footer">
+          <span id="gridVio1" class="cam-vio">0 violations</span>
+          <span id="gridFps1" class="cam-fps">— fps</span>
+        </div>
+      </div>
+
+      <!-- CAM 3 -->
+      <div class="cam-card" onclick="showDetail(2)">
+        <div class="cam-header">
+          <span class="cam-label">CAM 3</span>
+          <span id="gridRec2" class="cam-rec hidden">● REC</span>
+        </div>
+        <div class="cam-feed-box">
+          <img id="gridFeed2" src="/stream/2" alt="CAM 3" />
+          <div class="cam-hover-overlay">
+            <span class="expand-hint">⛶ Full View</span>
+          </div>
+        </div>
+        <div class="cam-footer">
+          <span id="gridVio2" class="cam-vio">0 violations</span>
+          <span id="gridFps2" class="cam-fps">— fps</span>
+        </div>
+      </div>
+
+      <!-- CAM 4 — Coming Soon -->
+      <div class="cam-card coming-soon">
+        <div class="cam-header">
+          <span class="cam-label">CAM 4</span>
+        </div>
+        <div class="cam-coming-soon">
+          <div class="cs-icon">📷</div>
+          <div class="cs-label">Coming Soon</div>
+          <div class="cs-sub">Camera not yet installed</div>
+        </div>
+        <div class="cam-footer" style="justify-content:center;">
+          <span class="cam-fps">— not connected —</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════════════
+       DETAIL VIEW — single camera with full stats panel
+  ════════════════════════════════════════════════════════════════════════════ -->
+  <div id="detailView" class="view hidden">
+
+    <div class="view-bar">
+      <button class="back-btn" onclick="showGrid()">← All Cameras</button>
+      <div class="view-title" id="detailTitle">CAM 1 — FULL VIEW</div>
+      <div></div>
+    </div>
+
+    <main class="detail-main">
+
+      <!-- Live feed -->
+      <section class="feed-section">
+        <div class="section-label">
+          <span id="detailCamLabel">LIVE FEED — CAM 1</span>
+          <span id="detailRecBadge" class="rec-badge hidden">● REC</span>
+        </div>
+        <div class="video-box">
+          <img id="detailFeed" src="" alt="Live Feed" />
+          <div id="detailFeedErr" class="feed-err hidden">
+            <span>⚠ Stream unavailable</span>
+            <button onclick="retryDetailFeed()">Retry</button>
+          </div>
+        </div>
+        <div class="feed-meta">
+          <span id="detailMetaSource">Source: —</span>
+          <span id="detailMetaFps">FPS: —</span>
+        </div>
+      </section>
+
+      <!-- Side panel -->
+      <aside>
+
+        <div class="stats-row">
+          <div class="stat-card danger">
+            <div class="stat-num" id="detailViolations">0</div>
+            <div class="stat-lbl">Violations</div>
+          </div>
+          <div class="stat-card" id="detailRecCard">
+            <div class="stat-num" id="detailRec">OFF</div>
+            <div class="stat-lbl">Recording</div>
+          </div>
+        </div>
+
+        <div class="info-table">
+          <div class="info-row">
+            <span class="info-key">Last violation</span>
+            <span class="info-val" id="detailLast">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Source</span>
+            <span class="info-val" id="detailSource">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Live FPS</span>
+            <span class="info-val" id="detailFps">—</span>
+          </div>
+        </div>
+
+        <div class="log-panel">
+          <div class="section-label log-panel-header">
+            <span>VIOLATION LOG</span>
+            <button class="btn-refresh" onclick="loadViolations()">↻ Refresh</button>
+          </div>
+          <div id="violationLog" class="log-list">
+            <div class="empty">No violations recorded</div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+  </div>
+
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

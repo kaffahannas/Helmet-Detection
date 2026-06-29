@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <div class="brand-logo">HT</div>
+            <div>
+                <h1>Helmet Detection CCTV</h1>
+                <p>{{.Camera.Location}} · {{.Camera.Region}}</p>
+            </div>
+        </div>
+        <div class="header-info">
+            <span>Live stream langsung</span>
+        </div>
+    </header>
+
+    <main class="page-grid">
+        <section class="live-panel">
+            <div class="panel-title">
+                <div>
+                    <h2>{{.Site.Name}}</h2>
+                    <p>Multiple stream preview</p>
+                </div>
+                <span class="badge">Langsung</span>
+            </div>
+
+            <div class="video-grid">
+                {{range .Cameras}}
+                <div class="video-card">
+                    <div class="video-card-header">
+                        <strong>{{.Name}}</strong>
+                        <small>{{.Description}}</small>
+                    </div>
+                    <div class="video-box">
+                        <img src="/stream/{{.ID}}" alt="{{.Name}}" class="live-video" />
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </section>
+
+        <aside class="info-panel">
+            <div class="info-card">
+                <h3>Daftar Kamera</h3>
+                <ul>
+                    {{range .Cameras}}
+                    <li>{{.Name}} — {{.SourceType}} ({{.Source}})</li>
+                    {{end}}
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="page-footer">
+        <span>Helmet Detection Web App</span>
+    </footer>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

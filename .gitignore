@@ -1,0 +1,42 @@
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# YOLO weights / Model files (Too large for GitHub's 100MB file limit)
+models/*.pt
+*.pt
+
+# Datasets and archives (Too large and slow for git)
+Dataset/
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+
+# Violation evidence recordings and local test videos
+bukti_pelanggaran/
+*.avi
+*.mp4
+*.mkv
+
+# IDEs and Editors
+.vscode/
+.claude/
+.idea/
+*.swp
+*.swo
+
+# Operating System files
+Thumbs.db
+Desktop.ini
+.DS_Store

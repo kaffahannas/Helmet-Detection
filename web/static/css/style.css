@@ -1,0 +1,159 @@
+:root {
+    --bg: #0f172a;
+    --surface: #14233b;
+    --surface-2: #1f2a47;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --success: #22c55e;
+    --danger: #f97316;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%),
+        linear-gradient(180deg, #020617 0%, #081126 100%);
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.site-header h1,
+.site-header p {
+    margin: 0;
+}
+
+.header-info {
+    color: var(--muted);
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.live-panel,
+.info-panel {
+    background: rgba(20, 35, 59, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 24px;
+    padding: 1.5rem;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.panel-title h2,
+.panel-title p {
+    margin: 0;
+}
+
+.badge {
+    background: rgba(56, 189, 248, 0.14);
+    color: var(--accent);
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.video-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    min-height: 420px;
+    display: grid;
+    place-items: center;
+}
+
+.live-video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.notes {
+    margin-top: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.info-card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 18px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--text);
+}
+
+.info-card p,
+.info-card ul {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.96rem;
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-card li {
+    margin-bottom: 0.5rem;
+}
+
+.page-footer {
+    padding: 1rem 2rem;
+    color: var(--muted);
+    border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+@media (max-width: 1000px) {
+    .page-grid {
+        grid-template-columns: 1fr;
+    }
+}
